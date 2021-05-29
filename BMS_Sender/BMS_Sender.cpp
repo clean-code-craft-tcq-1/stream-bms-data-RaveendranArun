@@ -1,6 +1,6 @@
 /* ***********************************************************************************************************
 * File Name   :	BMS_Sender.cpp
-* Author      : Arun Rqaveendran
+* Author      : Arun Raveendran
 * Description : BMS_Sender.cpp is used to send the BMS datas like temperature and State of Charging
 * Functions	  :
 * *********************************************************************************************************** */
