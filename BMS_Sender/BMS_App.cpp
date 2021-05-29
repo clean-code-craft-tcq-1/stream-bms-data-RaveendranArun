@@ -6,7 +6,7 @@
 int main()
 {
     CBMSDataGenerator* pBMSDataGen = new CBMSDataGenerator;
-    while (1)
+    for (int i = 0; i < 10; ++i)
     {
         pBMSDataGen->StreamDataToConsole(pBMSDataGen->GenerateJSON());
         std::this_thread::sleep_for(std::chrono::milliseconds(500));;
