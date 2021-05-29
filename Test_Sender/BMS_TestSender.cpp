@@ -7,13 +7,13 @@
 
 TEST_CASE("Data generation test") 
 {
-
-	CBMSDataGenerator* pBmsObj = new CBMSDataGenerator;
-	BmsData data;
-	for (int iter = 0; iter < 50; iter++) 
-	{
-		data = pBmsObj->TestData(pBmsObj->GenerateJSON());
-		REQUIRE(pBmsObj->ValidateDataRange(data.stateOfCharge, MIN_SOC, MAX_SOC));
-		REQUIRE(pBmsObj->ValidateDataRange(data.temperature, MIN_TEMPERATURE, MAX_TEMPERATURE));
-	}
+    BmsData data;
+    CBMSDataGenerator* pBmsObj = new CBMSDataGenerator;
+  
+    for (int iter = 0; iter < 50; iter++) 
+    {
+	data = pBmsObj->TestData(pBmsObj->GenerateJSON());
+	REQUIRE(pBmsObj->ValidateDataRange(data.stateOfCharge, MIN_SOC, MAX_SOC));
+	REQUIRE(pBmsObj->ValidateDataRange(data.temperature, MIN_TEMPERATURE, MAX_TEMPERATURE));
+    }
 }
