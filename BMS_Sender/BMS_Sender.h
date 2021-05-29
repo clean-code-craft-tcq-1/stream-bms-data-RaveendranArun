@@ -15,13 +15,26 @@ using namespace std;
 #define MIN_SOC             40
 #define MAX_SOC             80
 
+#define TEMP_JSON_INDEX     1
+#define SOC_JSON_INDEX      3
+
+typedef struct BmsData
+{
+    float temperature;
+    float stateOfCharge;
+}BmsData;
+
 class CBMSParam
 {
 private:
-    float m_temperature;
-    float m_stateOfCharge;
+    BmsData m_data;
 public:
-    CBMSParam(): m_temperature(0.0), m_stateOfCharge(0.0){} 
+    CBMSParam()
+    {
+        m_data.temperature = 0.0;
+        m_data.stateOfCharge = 0.0;
+    }
+
     void SetTemperature(float);
     float GetTemperature(void);
     void SetStateOfCharge(float);
@@ -30,28 +43,27 @@ public:
 
 inline void CBMSParam::SetTemperature(float temperature)
 {
-    m_temperature = temperature;
+    m_data.temperature = temperature;
 }
 
 inline float CBMSParam::GetTemperature(void)
 {
-    return m_temperature;
+    return m_data.temperature;
 }
 
 inline void CBMSParam::SetStateOfCharge(float soc)
 {
-    m_stateOfCharge = soc;
+    m_data.stateOfCharge = soc;
 }
 
 inline float CBMSParam::GetStateOfCharge(void)
 {
-    return m_stateOfCharge;
+    return m_data.stateOfCharge;
 }
 
 class CBMSDataGenerator
 {
 private:
-
     CBMSParam m_param;
 
 public:
@@ -62,7 +74,8 @@ public:
     int RandomNumberGenerator(int , int);
     void StreamDataToConsole(std::stringstream data);
     std::stringstream GenerateJSON(void);
-    bool ValidateData(float value, int minVal, int maxVal);
+    BmsData TestData(stringstream testData);
+    bool ValidateDataRange(float value, int minVal, int maxVal);
 };
 
 #endif
