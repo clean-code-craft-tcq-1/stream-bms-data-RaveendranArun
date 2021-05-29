@@ -5,10 +5,11 @@
 #include "../BMS_Sender/BMS_Sender.h"
 #include "catch.hpp"
 
-TEST_CASE("Data generation test") {
+TEST_CASE("Data generation test") 
+{
 
 	CBMSDataGenerator* pBmsObj = new CBMSDataGenerator;
-    BmsData data;
+	BmsData data;
 	for (int iter = 0; iter < 50; iter++) 
 	{
 		data = pBmsObj->TestData(pBmsObj->GenerateJSON());
