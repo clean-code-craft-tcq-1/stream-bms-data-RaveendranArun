@@ -52,10 +52,10 @@ BmsData CBMSDataGenerator::TestData(stringstream testData)
     BmsData data;
     std::string subString[5];
 
-	for(int iter=0; iter < 5; iter++)
-	{
-		testData >> subString[iter];
-	}
+    for(int iter=0; iter < 5; iter++)
+    {
+	testData >> subString[iter];
+    }
     data.temperature = std::stof(subString[TEMP_JSON_INDEX]);
     data.stateOfCharge = std::stof(subString[SOC_JSON_INDEX]);
     return data; 
