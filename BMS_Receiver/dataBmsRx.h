@@ -41,5 +41,6 @@ retBmsStatus_en performBmsRead(char *txBmsReadPtr);
 void checkValIsMax(float *maxValue, float maxRange);
 void checkValIsMin(float *minValue, float minRange);
 retBmsStatus_en RxBmsData(void);
+retBmsStatus_en testMain(void);
 
 #endif  /* DATABMSTX_H_ */
