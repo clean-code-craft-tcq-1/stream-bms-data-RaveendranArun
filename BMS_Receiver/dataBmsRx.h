@@ -27,6 +27,7 @@ typedef struct
   float batteryTempearature[ARRINDEXSIZE];
   float batterySoc[ARRINDEXSIZE];
   int numOfData;
+  int stringSize;
 }batteryReading_st;
 
 /* Function declaration */
