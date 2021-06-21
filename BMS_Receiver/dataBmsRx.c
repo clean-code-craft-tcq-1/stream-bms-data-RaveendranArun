@@ -56,7 +56,7 @@ retBmsStatus_en convertAsciiToFloat(char *txBmsinfoRead)
 
   point_ch = checkNumPoint(&txBmsinfoRead[loopCntr]);
 	
-  for (; (((txBmsinfoRead[loopCntr]>='0')&&(txBmsinfoRead[loopCntr]<='9'))||(txBmsinfoRead[loopCntr] == '.')); loopCntr++) 
+  for (; ((txBmsinfoRead[loopCntr] !=' ')&&(txBmsinfoRead[loopCntr] !='\n')); loopCntr++) 
   {
     if (loopCntr < point_ch)
     {
