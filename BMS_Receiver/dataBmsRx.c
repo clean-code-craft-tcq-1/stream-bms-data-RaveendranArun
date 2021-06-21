@@ -21,7 +21,7 @@ retBmsStatus_en performBmsRead(char *txBmsReadPtr)
 	return retStatus;
 }
 
-retBmsStatus_en prepareConvAtoF(txBmsReadPtr)
+retBmsStatus_en prepareConvAtoF(char *txBmsReadPtr)
 {
 	retBmsStatus_en retStatus = ERROR_STATUS;
 	int lengthOfString = 0x00;
@@ -48,7 +48,7 @@ retBmsStatus_en prepareConvAtoF(txBmsReadPtr)
 	return retStatus;
 }
 
-retBmsStatus_en convertAsciiToFloat(char *txBmsinfoRead)
+float convertAsciiToFloat(char *txBmsinfoRead)
 {
   int loopCntr = 0;
   int num = 0, num2 = 0, point_ch = 0, x = 0, decPointNum = 1; 
@@ -84,7 +84,7 @@ int checkNumPoint(char *addrChPtr)
 {
 	int loopCntr = 0;
 	int pnt_ch = 0;
-	for (loopCntr; addrChPtr[loopCntr]; loopCntr++)
+	for (; addrChPtr[loopCntr]; loopCntr++)
     if (addrChPtr[loopCntr] == '.') 
 	{
       pnt_ch = loopCntr;
@@ -131,23 +131,23 @@ retBmsStatus_en RxBmsData()
 	return retStatus;
 }
 
-void checkTempValIsMax(float *maxValue, float maxRange)
+void checkValIsMax(float *maxValue, float maxRange)
 {
-	for(  int loopCntr = 0;loopCntr<(bmsTempSocData.numOfData);loopCntr)
+	for(  int loopCntr = 0;loopCntr<(bmsTempSocData.numOfData);loopCntr++)
 	{
 		if(maxValue[loopCntr] >= maxRange)
 		{
-			printf("Max range is breached\n",maxValue[loopCntr]);
+			printf("Max range of %f is breached by %f\n",maxRange,maxValue[loopCntr]);
 		}
 	}
 }
 void checkValIsMin(float *minValue, float minRange)
 {
-	for(  int loopCntr = 0;loopCntr<(bmsTempSocData.numOfData);loopCntr)
+	for(  int loopCntr = 0;loopCntr<(bmsTempSocData.numOfData);loopCntr++)
 	{
 		if(minValue[loopCntr]<=minRange)
 		{
-			printf("Min range is breached\n",minValue[loopCntr]);
+			printf("Min range of %f breached by %f\n",minRange,minValue[loopCntr]);
 		}
 	}
 }
@@ -159,5 +159,5 @@ int main()
 	checkValIsMax(&bmsTempSocData.batterySoc[0], SOC_MAX);
 	checkValIsMin(&bmsTempSocData.batteryTempearature[0], TEMPERATURE_MIN);
 	checkValIsMin(&bmsTempSocData.batterySoc[0], SOC_MIN);
-	
+	return 0;
 }
