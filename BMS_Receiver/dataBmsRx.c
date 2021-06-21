@@ -151,7 +151,7 @@ void checkValIsMin(float *minValue, float minRange)
 		}
 	}
 }
-retBmsStatus_en main()
+int main()
 {
 	retBmsStatus_en retStatus = ERROR_STATUS;
 	retStatus = RxBmsData();
@@ -159,5 +159,6 @@ retBmsStatus_en main()
 	checkValIsMax(&bmsTempSocData.batterySoc[0], SOC_MAX);
 	checkValIsMin(&bmsTempSocData.batteryTempearature[0], TEMPERATURE_MIN);
 	checkValIsMin(&bmsTempSocData.batterySoc[0], SOC_MIN);
-	return retStatus;
+	(void)retStatus;
+	return 0;
 }
