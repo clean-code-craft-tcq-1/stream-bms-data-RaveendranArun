@@ -35,9 +35,9 @@ void updateBmsDataValues(int arrIndx);
 int checkNumPoint(char *addrChPtr);
 int setDeciPoint(int pointNum);
 retBmsStatus_en prepareConvAtoF(char *txBmsReadPtr);
-retBmsStatus_en convertAsciiToFloat(char *txBmsinfoRead);
+float convertAsciiToFloat(char *txBmsinfoRead);
 retBmsStatus_en performBmsRead(char *txBmsReadPtr);
-void checkTempValIsMax(float *maxValue, float maxRange);
+void checkValIsMax(float *maxValue, float maxRange);
 void checkValIsMin(float *minValue, float minRange);
 retBmsStatus_en RxBmsData(void);
 
