@@ -3,7 +3,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include <string.h>
-#include "BMS_Reciever.h"
+#include "dataBmsTx.h"
 
 /* global variable declaration */
 batteryReading_st bmsTempSocData;
