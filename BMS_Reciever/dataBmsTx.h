@@ -1,5 +1,5 @@
-#ifndef DATABMSTX_H_
-#define DATABMSTX_H_
+#ifndef DATABMSRX_H_
+#define DATABMSRX_H_
 
 /* Macro Declaration */
 #define ARRINDEXSIZE 1000
