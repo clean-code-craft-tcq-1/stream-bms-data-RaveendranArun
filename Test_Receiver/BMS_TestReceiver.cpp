@@ -6,3 +6,7 @@ TEST_CASE(" Test case to check if data is read from sender to Reciever is succes
 {
  REQUIRE(RxBmsData() == OK_STATUS);
 }
+TEST_CASE(" Test case to check if RxBmsData is called and data is read from sender to Reciever ") 
+{
+ REQUIRE(testMain() == OK_STATUS);
+}
