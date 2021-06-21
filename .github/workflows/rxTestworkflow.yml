@@ -18,7 +18,7 @@ jobs:
       run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o receiver-executable BMS_Receiver/*.c
       
     - name: build
-      run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o receiver-test Test_Receiver/*.c BMS_Receiver/dataBmsRx.c   
+      run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o receiver-test Test_Receiver/*.cpp BMS_Receiver/dataBmsRx.c   
       
     - name: run
       run: ./receiver-executable
