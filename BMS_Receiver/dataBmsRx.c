@@ -32,7 +32,7 @@ retBmsStatus_en prepareConvAtoF(char *txBmsReadPtr)
     txBmsReadPtr[lengthOfString] = '\n';
     txBmsReadPtr[lengthOfString + 1] = '\0';
 	bmsTempSocData.stringSize = lengthOfString;
-	printf("txBmsReadPtr = %f\n", txBmsReadPtr);
+	printf("txBmsReadPtr = %s\n", txBmsReadPtr);
     for(loopCntr = 0;txBmsReadPtr[loopCntr]!='\0';loopCntr++)
     {
     if((((txBmsReadPtr[loopCntr]>='0')&&(txBmsReadPtr[loopCntr]<='9'))||(txBmsReadPtr[loopCntr] == '.')))
