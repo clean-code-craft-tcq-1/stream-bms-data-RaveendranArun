@@ -17,4 +17,6 @@ jobs:
       run: g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o receiver-executable BMS_Receiver/*.c
       
     - name : Pipe
-      run: sender-executable BMS_Sender/*.cpp | ./receiver-executable
+      run: |
+         g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o sender-executable BMS_Sender/*.cpp 
+         gcc -DMAIN -Wall -Wextra -fprofile-arcs -ftest-coverage -o receiver-executable BMS_Receiver/*.c
