@@ -32,7 +32,6 @@ retBmsStatus_en prepareConvAtoF(char *txBmsReadPtr)
     txBmsReadPtr[lengthOfString] = '\n';
     txBmsReadPtr[lengthOfString + 1] = '\0';
 	bmsTempSocData.stringSize = lengthOfString;
-	printf("txBmsReadPtr = %s\n", txBmsReadPtr);
     for(loopCntr = 0;txBmsReadPtr[loopCntr]!='\0';loopCntr++)
     {
     if((((txBmsReadPtr[loopCntr]>='0')&&(txBmsReadPtr[loopCntr]<='9'))||(txBmsReadPtr[loopCntr] == '.')))
@@ -42,7 +41,6 @@ retBmsStatus_en prepareConvAtoF(char *txBmsReadPtr)
        inputSt.cntr=0;
 	   updateBmsDataValues(cntrval);
 	   cntrval++;
-       printf("%f", inputSt.y);
     }
 	retStatus = OK_STATUS;
     }
@@ -109,10 +107,12 @@ void updateBmsDataValues(int arrIndx)
 	if((arrIndx&1)!=1)
 	{
 		bmsTempSocData.batteryTempearature[bmsTempSocData.numOfData] = inputSt.y;
+		printf("%f/t",bmsTempSocData.batteryTempearature[bmsTempSocData.numOfData]);
 	}
 	else
 	{
 		bmsTempSocData.batterySoc[bmsTempSocData.numOfData] = inputSt.y;
+		printf("%f/n",bmsTempSocData.batterySoc[bmsTempSocData.numOfData]);
 		bmsTempSocData.numOfData+=1;
 	}
 }
