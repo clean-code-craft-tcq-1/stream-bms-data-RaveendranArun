@@ -9,6 +9,15 @@
 batteryReading_st bmsTempSocData;
 dataBms_St inputSt;
 
+/*
+ **********************************************************************************************************************
+ * Service name         : performBmsRead
+ * Syntax               : retBmsStatus_en performBmsRead(char *)
+ * param[in]            : txBmsReadPtr
+ * return               : None
+ * Description          : Program to perform BMS read
+ **********************************************************************************************************************
+ */
 retBmsStatus_en performBmsRead(char *txBmsReadPtr)
 {
 	retBmsStatus_en retStatus = ERROR_STATUS;
@@ -21,6 +30,15 @@ retBmsStatus_en performBmsRead(char *txBmsReadPtr)
 	return retStatus;
 }
 
+/*
+ **********************************************************************************************************************
+ * Service name         : prepareConvAtoF
+ * Syntax               : retBmsStatus_en prepareConvAtoF(char *)
+ * param[in]            : txBmsReadPtr
+ * return               : None
+ * Description          : Program to prepare data for asci to float conversion
+ **********************************************************************************************************************
+ */
 retBmsStatus_en prepareConvAtoF(char *txBmsReadPtr)
 {
 	retBmsStatus_en retStatus = ERROR_STATUS;
@@ -47,6 +65,15 @@ retBmsStatus_en prepareConvAtoF(char *txBmsReadPtr)
 	return retStatus;
 }
 
+/*
+ **********************************************************************************************************************
+ * Service name         : convertAsciiToFloat
+ * Syntax               : float convertAsciiToFloat(char *)
+ * param[in]            : addrChPtr
+ * return               : None
+ * Description          : Program to convert ascii to float
+ **********************************************************************************************************************
+ */
 float convertAsciiToFloat(char *txBmsinfoRead)
 {
   int loopCntr = 0;
@@ -79,6 +106,15 @@ float convertAsciiToFloat(char *txBmsinfoRead)
   return f3;	
 }
 
+/*
+ **********************************************************************************************************************
+ * Service name         : checkNumPoint
+ * Syntax               : int checkNumPoint(char *)
+ * param[in]            : addrChPtr
+ * return               : None
+ * Description          : Program to check at what place the decimal point occurs from the provided input data
+ **********************************************************************************************************************
+ */
 int checkNumPoint(char *addrChPtr)
 {
 	int loopCntr = 0;
@@ -92,6 +128,15 @@ int checkNumPoint(char *addrChPtr)
 	return pnt_ch;
 }
 
+/*
+ **********************************************************************************************************************
+ * Service name         : setDeciPoint
+ * Syntax               : int setDeciPoint(int)
+ * param[in]            : pointNum
+ * return               : None
+ * Description          : Program to set the decimal point based on number of digits
+ **********************************************************************************************************************
+ */
 int setDeciPoint(int pointNum)
 {
   int loopCntr = 0;
@@ -102,8 +147,18 @@ int setDeciPoint(int pointNum)
   return decPntNum;
 }
 
+/*
+ **********************************************************************************************************************
+ * Service name         : updateBmsDataValues
+ * Syntax               : void updateBmsDataValues(int)
+ * param[in]            : arrIndx
+ * return               : None
+ * Description          : Program to check and fetch either BMS Soc or temperature data
+ **********************************************************************************************************************
+ */
 void updateBmsDataValues(int arrIndx)
 {
+	/* conditional check to update and print either BMS temparature data or Soc data */
 	if((arrIndx&1)!=1)
 	{
 		bmsTempSocData.batteryTempearature[bmsTempSocData.numOfData] = inputSt.y;
@@ -117,6 +172,15 @@ void updateBmsDataValues(int arrIndx)
 	}
 }
 
+/*
+ **********************************************************************************************************************
+ * Service name         : RxBmsData
+ * Syntax               : retBmsStatus_en RxBmsData(void)
+ * param[in]            : None
+ * return               : None
+ * Description          : Program to Read from console or sender to update the txBmsDataRead bufffer
+ **********************************************************************************************************************
+ */
 retBmsStatus_en RxBmsData()
 {
 	retBmsStatus_en retStatus = ERROR_STATUS;
@@ -132,6 +196,15 @@ retBmsStatus_en RxBmsData()
 	return retStatus;
 }
 
+/*
+ **********************************************************************************************************************
+ * Service name         : checkValIsMax
+ * Syntax               : void checkValIsMax(float *, float)
+ * param[in]            : maxValue
+ * return               : maxRange
+ * Description          : Program to check and print if the BMS maximum value or range is breached
+ **********************************************************************************************************************
+ */
 void checkValIsMax(float *maxValue, float maxRange)
 {
 	for(  int loopCntr = 0;loopCntr<(bmsTempSocData.numOfData);loopCntr++)
@@ -142,6 +215,16 @@ void checkValIsMax(float *maxValue, float maxRange)
 		}
 	}
 }
+
+/*
+ **********************************************************************************************************************
+ * Service name         : checkValIsMin
+ * Syntax               : void checkValIsMin(float *, float)
+ * param[in]            : minValue
+ * return               : minRange
+ * Description          : Program to check and print if the BMS minimum value or range is breached
+ **********************************************************************************************************************
+ */
 void checkValIsMin(float *minValue, float minRange)
 {
 	for(  int loopCntr = 0;loopCntr<(bmsTempSocData.numOfData);loopCntr++)
@@ -152,6 +235,16 @@ void checkValIsMin(float *minValue, float minRange)
 		}
 	}
 }
+
+/*
+ **********************************************************************************************************************
+ * Service name         : testMain
+ * Syntax               : retBmsStatus_en testMain(void)
+ * param[in]            : none
+ * return               : none
+ * Description          : Program to check and print if recieved BMS data is max or min range
+ **********************************************************************************************************************
+ */
 retBmsStatus_en testMain()
 {
 	retBmsStatus_en retStatus = ERROR_STATUS;
